@@ -7,12 +7,13 @@ import path from 'path'
 ;
 
 (async function () {
-	const title = 'Frequently Asked Angular Interview Questions'
+	const title =
+		'Frequently Asked DataStructure and Algorithms Interview Questions'
 	const resources = [
-		{
-			title: 'Angular Documentations',
-			url: 'https://angular.io/',
-		},
+		// {
+		// 	title: 'Angular Documentations',
+		// 	url: 'https://angular.io/',
+		// },
 	]
 	const fromDir = (startPath, filter, callback) => {
 		if (!existsSync(startPath)) {
