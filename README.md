@@ -5,90 +5,105 @@
 
  ## Table of Contents
 
-- [1 Difference between Angular and AngularJS](#difference-between-angular-and-angularjs)
-- [2 What Is Angular?](#what-is-angular)
-- [3 What are the core building block of angular](#what-are-the-core-building-block-of-angular)
-- [4 What is Components?](#what-is-components)
-- [5 What is TypeScript and why it is used?](#what-is-typescript-and-why-it-is-used)
-- [6 Why Angular?](#why-angular)
+- [1 What is Big O notation?](#what-is-big-o-notation)
+- [2 What is meant by linear search?](#what-is-meant-by-linear-search)
+- [3 what is o(n) time complexity](#what-is-on-time-complexity)
+- [4 What is binary searching?](#what-is-binary-searching)
+- [5 When should you not use binary search?](#when-should-you-not-use-binary-search)
 <br/><br/><br/><br/>
 
-1. ### Difference between Angular and AngularJS
+1. ### What is Big O notation?
 
-Difference between the AngularJS & Angular: Although, there are significant key differences between Angular JS & Angular:
+Big O Notation is a way to measure an algorithm's efficiency. It measures the time it takes to run your function as the input grows.
 
-| AngularJS                                     | Angular                                                                           |
-| --------------------------------------------- | --------------------------------------------------------------------------------- |
-| It supports the Model-View-Controller design. | It uses components and directives. Components are the directives with a template. |
-| Written in JavaScript                         | Written in TypeScript                                                             |
-| Not a mobile friendly framework               | Angular is supported by all the popular mobile browsers.                          |
-| It does not use Dependency Injection.         | It support Dependency Injection.                                                  |
+2. ### What is meant by linear search?
 
-2. ### What Is Angular?
+A linear search is a simple search algorithm that looks at each element in the data set and checks if the element is the one you are looking for. Starting at the beginning of the data set. Once the item is found, the search ends.
 
-Angular is an open-source, JavaScript framework written in TypeScript. Google maintains it, and its primary purpose is to develop single-page applications. As a framework, Angular has clear advantages while also providing a standard structure for developers to work with. It enables users to create large applications in a maintainable manner.
-
-3. ### What are the core building block of angular
-
-The various building blocks of Angular are:
-
-- Components
-- Modules
-- Directives
-- Decorators
-- Pipes
-- Data Binding
-- Templates
-- Metadata
-- Services
-- Dependency Injection
-
-4. ### What is Components?
-
-In Angular, Components are the most basic UI building block of an Angular app. An Angular app contains a tree of Angular components. Angular components are a subset of directives, always associated with a template. Unlike other directives, only one component can be instantiated for a given element in a template.
-
-- Components are typically custom HTML elements, and each of these elements can instantiate only one component.
-- A TypeScript class is used to create a component. This class is then decorated with the `@Component` decorator. The decorator accepts a metadata object that gives information about the component.
-- A component must belong to the NgModule in order for it to be usable by another component or application.
-- Components control their runtime behavior by implementing Life-Cycle hooks.
-
-**Example of an Component**
-
-```TypeScript
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'Angular';
+```javascript
+function linearSearch(arr, item) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] === item) {
+			return true
+		}
+	}
+	return false
 }
+
+linearSearch([1, 2, 3, 4, 5], 3) // true
 ```
 
-5. ### What is TypeScript and why it is used?
+**Big O Notation**
+The time complexity is O(n) because the algorithm has to look at each element in the data set.
 
-TypeScript is a programming language first developed by Microsoft in 2012. Its main ambition is to improve the productivity of developing complex applications.
-It is an open-source language developed as a superset of JavaScript. What this means in simple terms is that any code valid in JavaScript is also valuable for TypeScript.
+3. ### what is o(n) time complexity
 
-### Example
+Linear time complexity O(n) means that the algorithms take proportionally longer to complete as the input grows.
 
-**Without typescript**
+Examples of linear time algorithms: Get the max/min value in an array.
 
 ```js
-var x = 1
-var y = 2
+function getMax(arr) {
+	let max = arr[0]
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i] > max) {
+			max = arr[i]
+		}
+	}
+	return max
+}
+
+function getMin(arr) {
+	let min = arr[0]
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i] < min) {
+			min = arr[i]
+		}
+	}
+	return min
+}
+
+const arr = [1, 2, 3, 4, 5]
+
+const max = getMax(arr)
+const min = getMin(arr)
 ```
 
-**With typescript**
+In the above example, the algorithm is O(n) because it has to loop through the array once to find the max and once to find the min value. The loop is dependent on the size of the array.
 
-```ts
-var x: number = 1
-var y: number = 2
+4. ### What is binary searching?
+
+Binary search is a search algorithm that works by comparing the target value to the middle element of the data set. If the target value is less than the middle element, the algorithm repeats the process on the lower half of the data set. If the target value is greater than the middle element, the algorithm repeats the process on the upper half of the data set.
+
+```javascript
+function binarySearch(arr, item) {
+	let low = 0
+	let high = arr.length - 1
+
+	while (low <= high) {
+		const mid = Math.floor((low + high) / 2)
+		const guess = arr[mid]
+
+		if (guess === item) {
+			return true
+		}
+
+		if (guess > item) {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+
+	return false
+}
+
+binarySearch([1, 2, 3, 4, 5], 3) // true
 ```
 
-6. ### Why Angular?
+**Note:** The above algorithm is `O(log n)` because it has to divide the data set in half every time it loops.
 
-JavaScript is the most commonly used client-side scripting language. It is written into HTML documents to enable interactions with web pages in many unique ways. As a relatively easy-to-learn language with pervasive support, it is well-suited to develop modern applications. But is JavaScript ideal for developing single-page applications that require modularity, testability, and developer productivity? Perhaps not. These days, we have a variety of frameworks and libraries designed to provide alternative solutions. With respect to front-end web development, Angular addresses many, if not all, of the issues developers face when using JavaScript on its own.
+5. ### When should you not use binary search?
 
-Angular Provide a collection of integrated libraries that cover a wide variety of features, including: routing forms management client server communication and more. Angular is designed to make updating as straightforward as possible so take advantage of the latest features development tools and libraries.
+In case the list of elements is not sorted, there's no way to use binary search because the median value of the list can be anywhere and when the list is split into two parts, the element that you were searching for could be cut off. This is why binary search is not useful.
 
