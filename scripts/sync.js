@@ -12,7 +12,7 @@ import path from 'path'
 	const resources = [
 		// {
 		// 	title: 'Angular Documentations',
-		// 	url: 'https://angular.io/',
+		// 	url: 'https://www.codingninjas.com/',
 		// },
 	]
 	const fromDir = (startPath, filter, callback) => {
