@@ -12,13 +12,14 @@
 - [6 What is the difference between ascending and descending order explain with example?](#what-is-the-difference-between-ascending-and-descending-order-explain-with-example)
 - [7 Why Sorting Algorithms are Important ?](#why-sorting-algorithms-are-important)
 - [8 What is the time complexity of linear search algorithm?](#what-is-the-time-complexity-of-linear-search-algorithm)
-- [9 What is meant by linear search?](#what-is-meant-by-linear-search)
-- [10 what is o(n) time complexity](#what-is-on-time-complexity)
-- [11 What will happen as n approaches infinity in BigO?](#what-will-happen-as-n-approaches-infinity-in-bigo)
-- [12 What does space complexity mean?](#what-does-space-complexity-mean)
-- [13 What is space complexity types?](#what-is-space-complexity-types)
-- [14 What is the fastest big O?](#what-is-the-fastest-big-o)
-- [15 What is binary searching?](#what-is-binary-searching)
+- [9 Difference between a binary search and a linear search?](#difference-between-a-binary-search-and-a-linear-search)
+- [10 What is meant by linear search?](#what-is-meant-by-linear-search)
+- [11 what is o(n) time complexity](#what-is-on-time-complexity)
+- [12 What will happen as n approaches infinity in BigO?](#what-will-happen-as-n-approaches-infinity-in-bigo)
+- [13 What does space complexity mean?](#what-does-space-complexity-mean)
+- [14 What is space complexity types?](#what-is-space-complexity-types)
+- [15 What is the fastest big O?](#what-is-the-fastest-big-o)
+- [16 What is binary searching?](#what-is-binary-searching)
 <br/><br/><br/><br/>
 
 1. ### What is an Algorithm?
@@ -80,7 +81,48 @@ Sorting can often reduce the complexity of a problem, it is an important algorit
 
 Linear search is also known as sequential search. It is named as linear because its time complexity is of the order of n O(n).
 
-9. ### What is meant by linear search?
+9. ### Difference between a binary search and a linear search?
+
+- Binary search requires that the list be sorted. Linear search does not require that the list be sorted.
+- Binary search require comparisons to be made. Linear search does not require comparisons to be made. Linear search require equality comparisons.
+- Binary search time complexity is O(log n). Linear search time complexity is O(n).
+
+**Example of binary search:**
+
+```javascript
+function binarySearch(arr, item) {
+  let low = 0
+  let high = arr.length - 1
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2)
+    const guess = arr[mid]
+    if (guess === item) {
+      return true
+    }
+    if (guess > item) {
+      high = mid - 1
+    } else {
+      low = mid + 1
+    }
+  }
+  return false
+}
+```
+
+**Example of linear search**
+
+```javascript
+function linearSearch(arr, item) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === item) {
+      return true
+    }
+  }
+  return false
+}
+```
+
+10. ### What is meant by linear search?
 
 A linear search is a simple search algorithm that looks at each element in the data set and checks if the element is the one you are looking for. Starting at the beginning of the data set. Once the item is found, the search ends.
 
@@ -100,7 +142,7 @@ linearSearch([1, 2, 3, 4, 5], 3) // true
 **Big O Notation**
 The time complexity is O(n) because the algorithm has to look at each element in the data set.
 
-10. ### what is o(n) time complexity
+11. ### what is o(n) time complexity
 
 Linear time complexity O(n) means that the algorithms take proportionally longer to complete as the input grows.
 
@@ -135,11 +177,11 @@ const min = getMin(arr)
 
 In the above example, the algorithm is O(n) because it has to loop through the array once to find the max and once to find the min value. The loop is dependent on the size of the array.
 
-11. ### What will happen as n approaches infinity in BigO?
+12. ### What will happen as n approaches infinity in BigO?
 
 Big O notation is written in the form of O(n) where O stands for “order of magnitude” and n represents what we're comparing the complexity of a task against.
 
-12. ### What does space complexity mean?
+13. ### What does space complexity mean?
 
 Space complexity is the amount of memory that an algorithm will use. Algorithms are run on a computer It need certain amount of memory space to run. The amount of memory used by an algorithm is called its space complexity.
 
@@ -166,7 +208,7 @@ function sum(n1, n2) {
 
 This algorithm will use O(1) space complexity. This is because it will use only one memory space to store the result of the sum function.
 
-13. ### What is space complexity types?
+14. ### What is space complexity types?
 
 Space complexity types are used to describe the amount of space required to store a given data structure.
 
@@ -176,7 +218,7 @@ Space complexity types are used to describe the amount of space required to stor
 - **O(n)**: Linear time complexity.
 - **O(log n)**: Logarithmic time complexity.
 
-14. ### What is the fastest big O?
+15. ### What is the fastest big O?
 
 The fastest possible running time for any algorithm is O(1), commonly referred to as Constant Running Time. In this case, the algorithm always takes the same amount of time to execute, regardless of the input size.
 
@@ -192,35 +234,59 @@ constantRunningTime(1) // O(1)
 
 The above algorithm is the fastest possible running time for any algorithm. It always takes the same amount of time to execute, regardless of the input size.
 
-15. ### What is binary searching?
+16. ### What is binary searching?
 
 Binary search is a search algorithm that works by comparing the target value to the middle element of the data set. If the target value is less than the middle element, the algorithm repeats the process on the lower half of the data set. If the target value is greater than the middle element, the algorithm repeats the process on the upper half of the data set.
 
 ```javascript
 function binarySearch(arr, item) {
-	let low = 0
-	let high = arr.length - 1
+ let low = 0
+ let high = arr.length - 1
 
-	while (low <= high) {
-		const mid = Math.floor((low + high) / 2)
-		const guess = arr[mid]
+ while (low <= high) {
+  const mid = Math.floor((low + high) / 2)
+  const guess = arr[mid]
 
-		if (guess === item) {
-			return true
-		}
+  if (guess === item) {
+   return true
+  }
 
-		if (guess > item) {
-			high = mid - 1
-		} else {
-			low = mid + 1
-		}
-	}
+  if (guess > item) {
+   high = mid - 1
+  } else {
+   low = mid + 1
+  }
+ }
 
-	return false
+ return false
 }
 
 binarySearch([1, 2, 3, 4, 5], 3) // true
 ```
 
 **Note:** The above algorithm is `O(log n)` because it has to divide the data set in half every time it loops.
+
+**Binary Search in String**
+
+```javascript
+const str = 'abcdefghijklmn'
+function bSearch(array, word) {
+ let left = 0
+ let right = array.length - 1
+ while (left <= right) {
+  const mid = Math.floor((left + right) / 2)
+  const guess = word.localeCompare(array[mid])
+  if (0 == guess) {
+   return { result: array[mid], index: mid }
+  }
+  if (guess > 0) {
+   left = mid + 1
+  } else {
+   right = mid - 1
+  }
+ }
+ return -1
+}
+console.log(bSearch(str.split(''), 'h'))
+``` 
 
