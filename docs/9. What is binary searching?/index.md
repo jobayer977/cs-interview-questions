@@ -6,28 +6,52 @@ Binary search is a search algorithm that works by comparing the target value to 
 
 ```javascript
 function binarySearch(arr, item) {
-	let low = 0
-	let high = arr.length - 1
+ let low = 0
+ let high = arr.length - 1
 
-	while (low <= high) {
-		const mid = Math.floor((low + high) / 2)
-		const guess = arr[mid]
+ while (low <= high) {
+  const mid = Math.floor((low + high) / 2)
+  const guess = arr[mid]
 
-		if (guess === item) {
-			return true
-		}
+  if (guess === item) {
+   return true
+  }
 
-		if (guess > item) {
-			high = mid - 1
-		} else {
-			low = mid + 1
-		}
-	}
+  if (guess > item) {
+   high = mid - 1
+  } else {
+   low = mid + 1
+  }
+ }
 
-	return false
+ return false
 }
 
 binarySearch([1, 2, 3, 4, 5], 3) // true
 ```
 
 **Note:** The above algorithm is `O(log n)` because it has to divide the data set in half every time it loops.
+
+**Binary Search in String**
+
+```javascript
+const str = 'abcdefghijklmn'
+function bSearch(array, word) {
+ let left = 0
+ let right = array.length - 1
+ while (left <= right) {
+  const mid = Math.floor((left + right) / 2)
+  const guess = word.localeCompare(array[mid])
+  if (0 == guess) {
+   return { result: array[mid], index: mid }
+  }
+  if (guess > 0) {
+   left = mid + 1
+  } else {
+   right = mid - 1
+  }
+ }
+ return -1
+}
+console.log(bSearch(str.split(''), 'h'))
+``` 
