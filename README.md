@@ -1,4 +1,4 @@
-# Frequently Asked DataStructure and Algorithms Interview Questions 
+# Frequently Asked CS Interview Questions 
  ### Resources 
  
 

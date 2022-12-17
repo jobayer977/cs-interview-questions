@@ -7,8 +7,7 @@ import path from 'path'
 ;
 
 (async function () {
-	const title =
-		'Frequently Asked DataStructure and Algorithms Interview Questions'
+	const title = 'Frequently Asked CS Interview Questions'
 	const resources = [
 		// {
 		// 	title: 'Angular Documentations',
